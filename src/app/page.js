@@ -1,0 +1,51 @@
+'use client'
+import styles from './page.module.css'
+import { useState } from 'react'
+
+import Project from '../components/project'
+import Modal from '../components/modal'
+
+export default function Home() {
+  const projects = [
+    {
+      title: "CS Montreal",
+      src: "c2montreal.png",
+      color: "#000"
+    },
+    {
+      title: "Office Studio",
+      src: "officestudio.png",
+      color: "#8C8C8C"
+    },
+    {
+      title: "Locomotive",
+      src: "locomotive.png",
+      color: "#efe8d3"
+    },
+    {
+      title: "Silencio",
+      src: "silencio.png",
+      color: "#706d63"
+    }
+  ]
+
+  const [modal, setModal] = useState({ active: false, index: 0 })
+
+  return (
+    <main className={styles.main}>
+      <div className={styles.body}>
+        {
+          projects.map((project, index) => {
+            return <Project
+              key={index}
+              index={index}
+              title={project.title}
+              setModal={setModal}
+            />
+          })
+        }
+      </div>
+      <Modal />
+    </main>
+  )
+}
