@@ -1,33 +1,33 @@
-'use client'
+'use client';
 import styles from './page.module.css'
-import { useState } from 'react'
+import { useState } from 'react';
+import Project from '../components/project';
+import Modal from '../components/modal';
 
-import Project from '../components/project'
-import Modal from '../components/modal'
+const projects = [
+  {
+    title: "C2 Montreal",
+    src: "c2montreal.png",
+    color: "#000000"
+  },
+  {
+    title: "Office Studio",
+    src: "officestudio.png",
+    color: "#8C8C8C"
+  },
+  {
+    title: "Locomotive",
+    src: "locomotive.png",
+    color: "#EFE8D3"
+  },
+  {
+    title: "Silencio",
+    src: "silencio.png",
+    color: "#706D63"
+  }
+]
 
 export default function Home() {
-  const projects = [
-    {
-      title: "CS Montreal",
-      src: "c2montreal.png",
-      color: "#000"
-    },
-    {
-      title: "Office Studio",
-      src: "officestudio.png",
-      color: "#8C8C8C"
-    },
-    {
-      title: "Locomotive",
-      src: "locomotive.png",
-      color: "#efe8d3"
-    },
-    {
-      title: "Silencio",
-      src: "silencio.png",
-      color: "#706d63"
-    }
-  ]
 
   const [modal, setModal] = useState({ active: false, index: 0 })
 
@@ -36,16 +36,11 @@ export default function Home() {
       <div className={styles.body}>
         {
           projects.map((project, index) => {
-            return <Project
-              key={index}
-              index={index}
-              title={project.title}
-              setModal={setModal}
-            />
+            return <Project index={index} title={project.title} setModal={setModal} key={index} />
           })
         }
       </div>
-      <Modal />
+      <Modal modal={modal} projects={projects} />
     </main>
   )
 }
